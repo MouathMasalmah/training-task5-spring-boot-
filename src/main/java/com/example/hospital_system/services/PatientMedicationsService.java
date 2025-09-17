@@ -1,7 +1,7 @@
 package com.example.hospital_system.services;
 
 import com.example.hospital_system.entities.PatientMedications;
-import com.example.hospital_system.entities.PatientMedicationsId;
+import com.example.hospital_system.PatientMedicationsId;
 import com.example.hospital_system.repositories.PatientMedicationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +22,12 @@ public class PatientMedicationsService {
         return repository.findById(id);
     }
 
-    public List<PatientMedications> getByPatientId(int patient_id) {
-        return repository.findByPatient_id(patient_id);
+    public List<PatientMedications> getByPatientId(int patientId) {
+        return repository.findByPatientId(patientId);
     }
 
-    public List<PatientMedications> getByMedicationId(int medication_id) {
-        return repository.findByMedication_id(medication_id);
+    public List<PatientMedications> getByMedicationId(int medicationId) {
+        return repository.findByMedicationId(medicationId);
     }
 
     public PatientMedications createPatientMedication(PatientMedications pm) {
@@ -39,8 +39,8 @@ public class PatientMedicationsService {
                 .orElseThrow(() -> new RuntimeException("Record not found"));
 
         pm.setDosage(pmDetails.getDosage());
-        pm.setStart_date(pmDetails.getStart_date());
-        pm.setEnd_date(pmDetails.getEnd_date());
+        pm.setStartDate(pmDetails.getStartDate());
+        pm.setEndDate(pmDetails.getEndDate());
 
         return repository.save(pm);
     }

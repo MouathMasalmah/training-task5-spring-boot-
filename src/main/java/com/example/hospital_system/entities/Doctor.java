@@ -1,8 +1,6 @@
 package com.example.hospital_system.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,18 +13,20 @@ public class Doctor {
     private String phoneNumber;
     private String address;
     private Date dateOfBirth;
-    private int specialization_id;
+    @Column(name = "specialization_id")
+    private int specializationId;
+
 
     public Doctor() {
     }
 
-    public Doctor(int doctorId, String doctorName, String phoneNumber, String address, Date dateOfBirth, int specialization_id) {
+    public Doctor(int doctorId, String doctorName, String phoneNumber, String address, Date dateOfBirth, int specializationId) {
         this.doctorId = doctorId;
         this.doctorName = doctorName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
-        this.specialization_id = specialization_id;
+        this.specializationId = specializationId;
     }
 
     public int getDoctorId() {
@@ -69,12 +69,12 @@ public class Doctor {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getSpecialization_id() {
-        return specialization_id;
+    public int getSpecializationId() {
+        return specializationId;
     }
 
-    public void setSpecialization_id(int specialization_id) {
-        this.specialization_id = specialization_id;
+    public void setSpecializationId(int specialization_id) {
+        this.specializationId = specialization_id;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Doctor {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", specialization_id=" + specialization_id +
+                ", specialization_id=" + specializationId +
                 '}';
     }
 
@@ -93,11 +93,11 @@ public class Doctor {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return doctorId == doctor.doctorId && specialization_id == doctor.specialization_id && Objects.equals(doctorName, doctor.doctorName) && Objects.equals(phoneNumber, doctor.phoneNumber) && Objects.equals(address, doctor.address) && Objects.equals(dateOfBirth, doctor.dateOfBirth);
+        return doctorId == doctor.doctorId && specializationId == doctor.specializationId && Objects.equals(doctorName, doctor.doctorName) && Objects.equals(phoneNumber, doctor.phoneNumber) && Objects.equals(address, doctor.address) && Objects.equals(dateOfBirth, doctor.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctorId, doctorName, phoneNumber, address, dateOfBirth, specialization_id);
+        return Objects.hash(doctorId, doctorName, phoneNumber, address, dateOfBirth, specializationId);
     }
 }

@@ -11,49 +11,49 @@ import java.util.Objects;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int patient_id;
-    private String patient_name;
-    private String phone_number;
+    private int patientId;
+    private String patientName;
+    private String phoneNumber;
     private String email;
     private String address;
-    private Date date_of_birth;
-    private int doctor_id;
+    private Date dateOfBirth;
+    private int doctorId;
 
     public Patient() {
     }
 
-    public Patient(int patient_id, String patient_name, String phone_number, String email, String address, Date date_of_birth, int doctor_id) {
-        this.patient_id = patient_id;
-        this.patient_name = patient_name;
-        this.phone_number = phone_number;
+    public Patient(int patientId, String patientName, String phoneNumber, String email, String address, Date dateOfBirth, int doctorId) {
+        this.patientId = patientId;
+        this.patientName = patientName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        this.date_of_birth = date_of_birth;
-        this.doctor_id = doctor_id;
+        this.dateOfBirth = dateOfBirth;
+        this.doctorId = doctorId;
     }
 
-    public int getPatient_id() {
-        return patient_id;
+    public int getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(int patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(int patient_id) {
+        this.patientId = patient_id;
     }
 
-    public String getPatient_name() {
-        return patient_name;
+    public String getPatientName() {
+        return patientName;
     }
 
-    public void setPatient_name(String patient_name) {
-        this.patient_name = patient_name;
+    public void setPatientName(String patient_name) {
+        this.patientName = patient_name;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phone_number) {
+        this.phoneNumber = phone_number;
     }
 
     public String getEmail() {
@@ -72,32 +72,32 @@ public class Patient {
         this.address = address;
     }
 
-    public Date getDate_of_birth() {
-        return date_of_birth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
-        this.date_of_birth = date_of_birth;
+    public void setDateOfBirth(Date date_of_birth) {
+        this.dateOfBirth = date_of_birth;
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(int doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(int doctor_id) {
+        this.doctorId = doctor_id;
     }
 
     @Override
     public String toString() {
         return "Patient{" +
-                "patient_id=" + patient_id +
-                ", patient_name='" + patient_name + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                "patient_id=" + patientId +
+                ", patient_name='" + patientName + '\'' +
+                ", phone_number='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
-                ", date_of_birth=" + date_of_birth +
-                ", doctor_id='" + doctor_id + '\'' +
+                ", date_of_birth=" + dateOfBirth +
+                ", doctor_id='" + doctorId + '\'' +
                 '}';
     }
 
@@ -105,11 +105,11 @@ public class Patient {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return patient_id == patient.patient_id && Objects.equals(patient_name, patient.patient_name) && Objects.equals(phone_number, patient.phone_number) && Objects.equals(email, patient.email) && Objects.equals(address, patient.address) && Objects.equals(date_of_birth, patient.date_of_birth) && Objects.equals(doctor_id, patient.doctor_id);
+        return patientId == patient.patientId && Objects.equals(patientName, patient.patientName) && Objects.equals(phoneNumber, patient.phoneNumber) && Objects.equals(email, patient.email) && Objects.equals(address, patient.address) && Objects.equals(dateOfBirth, patient.dateOfBirth) && Objects.equals(doctorId, patient.doctorId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(patient_id, patient_name, phone_number, email, address, date_of_birth, doctor_id);
+        return Objects.hash(patientId, patientName, phoneNumber, email, address, dateOfBirth, doctorId);
     }
 }
