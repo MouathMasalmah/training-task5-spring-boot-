@@ -1,9 +1,12 @@
 package com.example.hospital_system.entities;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Objects;
 
+@Entity
 public class Specialisation {
-
+    @Id
     private int specialization_id;
     private String specialization_name;
 
