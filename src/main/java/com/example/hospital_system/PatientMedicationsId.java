@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class PatientMedicationsId implements Serializable {
-    private int medication_id;
-    private int patient_id;
+    private int medicationId;
+    private int patientId;
 
     public PatientMedicationsId() {}
 
-    public PatientMedicationsId(int medication_id, int patient_id) {
-        this.medication_id = medication_id;
-        this.patient_id = patient_id;
+    public PatientMedicationsId(int medicationId, int patientId) {
+        this.medicationId = medicationId;
+        this.patientId = patientId;
     }
 
     @Override
@@ -19,11 +19,11 @@ public class PatientMedicationsId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof PatientMedicationsId)) return false;
         PatientMedicationsId that = (PatientMedicationsId) o;
-        return medication_id == that.medication_id && patient_id == that.patient_id;
+        return medicationId == that.medicationId && patientId == that.patientId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(medication_id, patient_id);
+        return Objects.hash(medicationId, patientId);
     }
 }

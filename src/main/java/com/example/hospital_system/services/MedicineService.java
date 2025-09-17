@@ -37,8 +37,8 @@ public class MedicineService {
         Medicine medicine = medicineRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Medicine not found"));
 
-        medicine.setMedication_name(medicineDetails.getMedication_name());
-        medicine.setRemaining_quantity(medicineDetails.getRemaining_quantity());
+        medicine.setMedicationName(medicineDetails.getMedicationName());
+        medicine.setRemainingQuantity(medicineDetails.getRemainingQuantity());
         medicine.setDescription(medicineDetails.getDescription());
 
         return medicineRepository.save(medicine);

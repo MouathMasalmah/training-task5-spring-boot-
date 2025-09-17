@@ -22,7 +22,7 @@ public class DoctorService {
     }
 
     public List<Doctor> getDoctorsBySpecialisation(int specialization_id) {
-        return doctorRepository.findBySpecialization_id(specialization_id);
+        return doctorRepository.findBySpecializationId(specialization_id);
     }
 
     public Doctor createDoctor(Doctor doctor) {
@@ -37,7 +37,7 @@ public class DoctorService {
         doctor.setPhoneNumber(doctorDetails.getPhoneNumber());
         doctor.setAddress(doctorDetails.getAddress());
         doctor.setDateOfBirth(doctorDetails.getDateOfBirth());
-        doctor.setSpecialization_id(doctorDetails.getSpecialization_id());
+        doctor.setSpecializationId(doctorDetails.getSpecializationId());
 
         return doctorRepository.save(doctor);
     }

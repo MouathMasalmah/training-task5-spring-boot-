@@ -9,43 +9,43 @@ import java.util.Objects;
 public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int medication_id;
-    private String medication_name;
-    private int remaining_quantity;
+    private int medicationId;
+    private String medicationName;
+    private int remainingQuantity;
     private String description;
 
     public Medicine() {
     }
 
-    public Medicine(int medication_id, String medication_name, int remaining_quantity, String description) {
-        this.medication_id = medication_id;
-        this.medication_name = medication_name;
-        this.remaining_quantity = remaining_quantity;
+    public Medicine(int medicationId, String medicationName, int remainingQuantity, String description) {
+        this.medicationId = medicationId;
+        this.medicationName = medicationName;
+        this.remainingQuantity = remainingQuantity;
         this.description = description;
     }
 
-    public int getMedication_id() {
-        return medication_id;
+    public int getMedicationId() {
+        return medicationId;
     }
 
-    public void setMedication_id(int medication_id) {
-        this.medication_id = medication_id;
+    public void setMedicationId(int medication_id) {
+        this.medicationId = medication_id;
     }
 
-    public String getMedication_name() {
-        return medication_name;
+    public String getMedicationName() {
+        return medicationName;
     }
 
-    public void setMedication_name(String medication_name) {
-        this.medication_name = medication_name;
+    public void setMedicationName(String medication_name) {
+        this.medicationName = medication_name;
     }
 
-    public int getRemaining_quantity() {
-        return remaining_quantity;
+    public int getRemainingQuantity() {
+        return remainingQuantity;
     }
 
-    public void setRemaining_quantity(int remaining_quantity) {
-        this.remaining_quantity = remaining_quantity;
+    public void setRemainingQuantity(int remaining_quantity) {
+        this.remainingQuantity = remaining_quantity;
     }
 
     public String getDescription() {
@@ -59,9 +59,9 @@ public class Medicine {
     @Override
     public String toString() {
         return "Medicine{" +
-                "medication_id=" + medication_id +
-                ", medication_name='" + medication_name + '\'' +
-                ", remaining_quantity=" + remaining_quantity +
+                "medication_id=" + medicationId +
+                ", medication_name='" + medicationName + '\'' +
+                ", remaining_quantity=" + remainingQuantity +
                 ", description='" + description + '\'' +
                 '}';
     }
@@ -70,11 +70,11 @@ public class Medicine {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Medicine medicine = (Medicine) o;
-        return medication_id == medicine.medication_id && remaining_quantity == medicine.remaining_quantity && Objects.equals(medication_name, medicine.medication_name) && Objects.equals(description, medicine.description);
+        return medicationId == medicine.medicationId && remainingQuantity == medicine.remainingQuantity && Objects.equals(medicationName, medicine.medicationName) && Objects.equals(description, medicine.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(medication_id, medication_name, remaining_quantity, description);
+        return Objects.hash(medicationId, medicationName, remainingQuantity, description);
     }
 }

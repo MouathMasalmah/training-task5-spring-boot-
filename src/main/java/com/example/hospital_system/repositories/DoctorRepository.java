@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
-    List<Doctor> findBySpecialization_id(int specializationId);
+    List<Doctor> findBySpecializationId(int specializationId);
 }

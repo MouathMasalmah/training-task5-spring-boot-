@@ -11,38 +11,38 @@ import java.util.Objects;
 @IdClass(PatientMedicationsId.class)
 public class PatientMedications {
     @Id
-    private int medication_id;
+    private int medicationId;
     @Id
-    private int patient_id;
+    private int patientId;
     private String dosage;
-    private Date start_date;
-    private Date end_date;
+    private Date startDate;
+    private Date endDate;
 
     public PatientMedications() {
     }
 
-    public PatientMedications(int medication_id, int patient_id, String dosage, Date start_date, Date end_date) {
-        this.medication_id = medication_id;
-        this.patient_id = patient_id;
+    public PatientMedications(int medicationId, int patientId, String dosage, Date startDate, Date endDate) {
+        this.medicationId = medicationId;
+        this.patientId = patientId;
         this.dosage = dosage;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
-    public int getMedication_id() {
-        return medication_id;
+    public int getMedicationId() {
+        return medicationId;
     }
 
-    public void setMedication_id(int medication_id) {
-        this.medication_id = medication_id;
+    public void setMedicationId(int medication_id) {
+        this.medicationId = medication_id;
     }
 
-    public int getPatient_id() {
-        return patient_id;
+    public int getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(int patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(int patient_id) {
+        this.patientId = patient_id;
     }
 
     public String getDosage() {
@@ -53,30 +53,30 @@ public class PatientMedications {
         this.dosage = dosage;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setStartDate(Date start_date) {
+        this.startDate = start_date;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setEndDate(Date end_date) {
+        this.endDate = end_date;
     }
 
     @Override
     public String toString() {
         return "PatientMedications{" +
-                "medication_id=" + medication_id +
-                ", patient_id=" + patient_id +
+                "medication_id=" + medicationId +
+                ", patient_id=" + patientId +
                 ", dosage='" + dosage + '\'' +
-                ", start_date=" + start_date +
-                ", end_date=" + end_date +
+                ", start_date=" + startDate +
+                ", end_date=" + endDate +
                 '}';
     }
 
@@ -84,11 +84,11 @@ public class PatientMedications {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         PatientMedications that = (PatientMedications) o;
-        return medication_id == that.medication_id && patient_id == that.patient_id && Objects.equals(dosage, that.dosage) && Objects.equals(start_date, that.start_date) && Objects.equals(end_date, that.end_date);
+        return medicationId == that.medicationId && patientId == that.patientId && Objects.equals(dosage, that.dosage) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(medication_id, patient_id, dosage, start_date, end_date);
+        return Objects.hash(medicationId, patientId, dosage, startDate, endDate);
     }
 }

@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository
 public interface PatientMedicationsRepository extends JpaRepository<PatientMedications, PatientMedicationsId> {
-    List<PatientMedications> findByPatient_id(int patient_id);
-    List<PatientMedications> findByMedication_id(int medication_id);
+    List<PatientMedications> findByPatientId(int patientId);
+    List<PatientMedications> findByMedicationId(int medicationId);
 }
