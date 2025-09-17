@@ -14,12 +14,12 @@ public class Patient {
     private String email;
     private String address;
     private Date date_of_birth;
-    private String doctor_id;
+    private int doctor_id;
 
     public Patient() {
     }
 
-    public Patient(int patient_id, String patient_name, String phone_number, String email, String address, Date date_of_birth, String doctor_id) {
+    public Patient(int patient_id, String patient_name, String phone_number, String email, String address, Date date_of_birth, int doctor_id) {
         this.patient_id = patient_id;
         this.patient_name = patient_name;
         this.phone_number = phone_number;
@@ -77,11 +77,11 @@ public class Patient {
         this.date_of_birth = date_of_birth;
     }
 
-    public String getDoctor_id() {
+    public int getDoctor_id() {
         return doctor_id;
     }
 
-    public void setDoctor_id(String doctor_id) {
+    public void setDoctor_id(int doctor_id) {
         this.doctor_id = doctor_id;
     }
 
