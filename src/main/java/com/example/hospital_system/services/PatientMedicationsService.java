@@ -1,7 +1,7 @@
 package com.example.hospital_system.services;
 
 import com.example.hospital_system.entities.PatientMedications;
-import com.example.hospital_system.entities.PatientMedicationsId;
+import com.example.hospital_system.PatientMedicationsId;
 import com.example.hospital_system.repositories.PatientMedicationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
