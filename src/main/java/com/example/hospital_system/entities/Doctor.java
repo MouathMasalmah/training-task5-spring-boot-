@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 import java.util.Date;
+import java.util.Objects;
+
 @Entity
 public class Doctor {
     @Id
@@ -86,5 +88,15 @@ public class Doctor {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Doctor doctor = (Doctor) o;
+        return doctorId == doctor.doctorId && specialization_id == doctor.specialization_id && Objects.equals(doctorName, doctor.doctorName) && Objects.equals(phoneNumber, doctor.phoneNumber) && Objects.equals(address, doctor.address) && Objects.equals(dateOfBirth, doctor.dateOfBirth);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(doctorId, doctorName, phoneNumber, address, dateOfBirth, specialization_id);
+    }
 }
