@@ -1,11 +1,14 @@
 package com.example.hospital_system.entities;
+import com.example.hospital_system.PatientMedicationsId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@IdClass(PatientMedicationsId.class)
 public class PatientMedications {
     @Id
     private int medication_id;

@@ -1,12 +1,12 @@
 package com.example.hospital_system.repositories;
-
+import com.example.hospital_system.PatientMedicationsId;
 import com.example.hospital_system.entities.PatientMedications;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PatientMedicationsRepository extends JpaRepository<PatientMedications, Integer> {
-    List<PatientMedications> findByPatientId(int patientId);
-    List<PatientMedications> findByMedicationId(int medicationId);
+public interface PatientMedicationsRepository extends JpaRepository<PatientMedications, PatientMedicationsId> {
+    List<PatientMedications> findByPatient_id(int patient_id);
+    List<PatientMedications> findByMedication_id(int medication_id);
 }
