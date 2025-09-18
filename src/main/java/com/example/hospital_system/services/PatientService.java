@@ -38,7 +38,7 @@ public class PatientService {
         patient.setEmail(patientDetails.getEmail());
         patient.setAddress(patientDetails.getAddress());
         patient.setDateOfBirth(patientDetails.getDateOfBirth());
-        patient.setDoctorId(patientDetails.getDoctorId());
+        patient.setDoctor(patientDetails.getDoctor());
 
         return patientRepository.save(patient);
     }

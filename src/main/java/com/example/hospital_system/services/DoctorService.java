@@ -1,7 +1,10 @@
 package com.example.hospital_system.services;
 
+import com.example.hospital_system.dto.DoctorWithPatientsDto;
 import com.example.hospital_system.entities.Doctor;
+import com.example.hospital_system.entities.Patient;
 import com.example.hospital_system.repositories.DoctorRepository;
+import com.example.hospital_system.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,9 @@ public class DoctorService {
 
     @Autowired
     private DoctorRepository doctorRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
 
     public List<Doctor> getAllDoctors() {
         return doctorRepository.findAll();
@@ -50,5 +56,21 @@ public class DoctorService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found with id: " + id);
         }
         doctorRepository.deleteById(id);
+    }
+    public DoctorWithPatientsDto getDoctorWithPatients(int id) {
+        Doctor doctor = doctorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found with id: " + id));
+
+        List<Patient> patients = patientRepository.findByDoctorId(id);
+
+        return new DoctorWithPatientsDto(
+                doctor.getId(),
+                doctor.getName(),
+                doctor.getPhoneNumber(),
+                doctor.getAddress(),
+                doctor.getDateOfBirth(),
+                doctor.getSpecializationId(),
+                patients
+        );
     }
 }

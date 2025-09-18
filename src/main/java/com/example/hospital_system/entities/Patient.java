@@ -1,9 +1,7 @@
 package com.example.hospital_system.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,24 +15,29 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
     private String phoneNumber;
     private String email;
     private String address;
     private Date dateOfBirth;
-    private int doctorId;
 
-    public Patient() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", nullable = false)
+    @JsonBackReference
+    private Doctor doctor;
 
-    public Patient(int id, String name, String phoneNumber, String email, String address, Date dateOfBirth, int doctorId) {
+    public Patient() {}
+
+    public Patient(int id, String name, String phoneNumber, String email,
+                   String address, Date dateOfBirth, Doctor doctor) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
-        this.doctorId = doctorId;
+        this.doctor = doctor;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class Patient {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", date_of_birth=" + dateOfBirth +
-                ", doctor_id='" + doctorId + '\'' +
+                ", doctor_id=" + (doctor != null ? doctor.getId() : null) +
                 '}';
     }
 
@@ -54,11 +57,17 @@ public class Patient {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return id == patient.id && Objects.equals(name, patient.name) && Objects.equals(phoneNumber, patient.phoneNumber) && Objects.equals(email, patient.email) && Objects.equals(address, patient.address) && Objects.equals(dateOfBirth, patient.dateOfBirth) && Objects.equals(doctorId, patient.doctorId);
+        return id == patient.id &&
+                Objects.equals(name, patient.name) &&
+                Objects.equals(phoneNumber, patient.phoneNumber) &&
+                Objects.equals(email, patient.email) &&
+                Objects.equals(address, patient.address) &&
+                Objects.equals(dateOfBirth, patient.dateOfBirth) &&
+                Objects.equals(doctor, patient.doctor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, phoneNumber, email, address, dateOfBirth, doctorId);
+        return Objects.hash(id, name, phoneNumber, email, address, dateOfBirth, doctor);
     }
 }

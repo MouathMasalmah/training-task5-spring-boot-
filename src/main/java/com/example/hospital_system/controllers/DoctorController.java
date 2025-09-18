@@ -1,5 +1,6 @@
 package com.example.hospital_system.controllers;
 
+import com.example.hospital_system.dto.DoctorWithPatientsDto;
 import com.example.hospital_system.entities.Doctor;
 import com.example.hospital_system.services.DoctorService;
 import jakarta.validation.Valid;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -80,4 +82,14 @@ public class DoctorController {
         doctorService.deleteDoctor(id);
         return ResponseEntity.ok("Doctor with id " + id + " deleted successfully");
     }
+    @GetMapping("/{id}/patients")
+    public ResponseEntity<DoctorWithPatientsDto> getDoctorWithPatients(@PathVariable int id) {
+        try {
+            DoctorWithPatientsDto doctorWithPatientsDto = doctorService.getDoctorWithPatients(id);
+            return ResponseEntity.ok(doctorWithPatientsDto);
+        } catch (ResponseStatusException e) {
+            return ResponseEntity.status(e.getStatusCode()).build();
+        }
+    }
+
 }

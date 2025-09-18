@@ -1,10 +1,13 @@
 package com.example.hospital_system.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -26,7 +29,6 @@ public class Doctor {
     )
     private String phoneNumber;
 
-
     @NotBlank
     @Size(max = 100)
     private String address;
@@ -39,10 +41,10 @@ public class Doctor {
     @Column(name = "specialization_id")
     private int specializationId;
 
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Patient> patients;
 
-
-    public Doctor() {
-    }
+    public Doctor() {}
 
     public Doctor(int id, String name, String phoneNumber, String address, Date dateOfBirth, int specializationId) {
         this.id = id;
@@ -69,7 +71,12 @@ public class Doctor {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return id == doctor.id && specializationId == doctor.specializationId && Objects.equals(name, doctor.name) && Objects.equals(phoneNumber, doctor.phoneNumber) && Objects.equals(address, doctor.address) && Objects.equals(dateOfBirth, doctor.dateOfBirth);
+        return id == doctor.id &&
+                specializationId == doctor.specializationId &&
+                Objects.equals(name, doctor.name) &&
+                Objects.equals(phoneNumber, doctor.phoneNumber) &&
+                Objects.equals(address, doctor.address) &&
+                Objects.equals(dateOfBirth, doctor.dateOfBirth);
     }
 
     @Override
