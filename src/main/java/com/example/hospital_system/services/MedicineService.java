@@ -22,7 +22,7 @@ public class MedicineService {
     }
 
     public List<Medicine> searchMedicinesByName(String name) {
-        return medicineRepository.findByMedicationNameContaining(name);
+        return medicineRepository.findByNameContaining(name);
     }
 
     public List<Medicine> getLowStockMedicines(int quantity) {

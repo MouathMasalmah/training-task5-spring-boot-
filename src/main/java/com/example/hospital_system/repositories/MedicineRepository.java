@@ -7,6 +7,6 @@ import java.util.List;
 
 @Repository
 public interface MedicineRepository extends JpaRepository<Medicine, Integer> {
-    List<Medicine> findByMedicationNameContaining(String name);
+    List<Medicine> findByNameContaining(String name);
     List<Medicine> findByRemainingQuantityLessThan(int quantity);
 }
