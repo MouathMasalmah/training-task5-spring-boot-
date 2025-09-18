@@ -19,11 +19,8 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
-    public Doctor getDoctorById(int id) {
-        return doctorRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Doctor not found with id: " + id
-                ));
+    public Optional<Doctor> getDoctorById(int id) {
+        return doctorRepository.findById(id);
     }
 
     public List<Doctor> getDoctorsBySpecialisation(int specialization_id) {

@@ -3,18 +3,19 @@ package com.example.hospital_system.controllers;
 import com.example.hospital_system.entities.Medicine;
 import com.example.hospital_system.services.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/medicines")
+@RequestMapping(value = "/api/medicines",produces = MediaType.APPLICATION_JSON_VALUE)
 public class MedicineController {
     @Autowired
     private MedicineService medicineService;
 
-    @GetMapping
+    @GetMapping(value = {"", "/"})
     public List<Medicine> getAllMedicines() {
         return medicineService.getAllMedicines();
     }

@@ -3,18 +3,19 @@ package com.example.hospital_system.controllers;
 import com.example.hospital_system.entities.Specialisation;
 import com.example.hospital_system.services.SpecialisationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/specialisations")
+@RequestMapping(value = "/api/specialisations",produces = MediaType.APPLICATION_JSON_VALUE)
 public class SpecialisationController {
     @Autowired
     private SpecialisationService service;
 
-    @GetMapping
+    @GetMapping(value = {"", "/"})
     public List<Specialisation> getAllSpecialisations() {
         return service.getAllSpecialisations();
     }
