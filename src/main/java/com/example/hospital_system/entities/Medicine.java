@@ -14,17 +14,17 @@ import java.util.Objects;
 public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int medicationId;
-    private String medicationName;
+    private int id;
+    private String name;
     private int remainingQuantity;
     private String description;
 
     public Medicine() {
     }
 
-    public Medicine(int medicationId, String medicationName, int remainingQuantity, String description) {
-        this.medicationId = medicationId;
-        this.medicationName = medicationName;
+    public Medicine(int id, String name, int remainingQuantity, String description) {
+        this.id = id;
+        this.name = name;
         this.remainingQuantity = remainingQuantity;
         this.description = description;
     }
@@ -32,8 +32,8 @@ public class Medicine {
     @Override
     public String toString() {
         return "Medicine{" +
-                "medication_id=" + medicationId +
-                ", medication_name='" + medicationName + '\'' +
+                "medication_id=" + id +
+                ", medication_name='" + name + '\'' +
                 ", remaining_quantity=" + remainingQuantity +
                 ", description='" + description + '\'' +
                 '}';
@@ -43,11 +43,11 @@ public class Medicine {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Medicine medicine = (Medicine) o;
-        return medicationId == medicine.medicationId && remainingQuantity == medicine.remainingQuantity && Objects.equals(medicationName, medicine.medicationName) && Objects.equals(description, medicine.description);
+        return id == medicine.id && remainingQuantity == medicine.remainingQuantity && Objects.equals(name, medicine.name) && Objects.equals(description, medicine.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(medicationId, medicationName, remainingQuantity, description);
+        return Objects.hash(id, name, remainingQuantity, description);
     }
 }

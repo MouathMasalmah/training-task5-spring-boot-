@@ -12,8 +12,8 @@ import java.util.Objects;
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int doctorId;
-    private String doctorName;
+    private int id;
+    private String name;
     private String phoneNumber;
     private String address;
     private Date dateOfBirth;
@@ -24,9 +24,9 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(int doctorId, String doctorName, String phoneNumber, String address, Date dateOfBirth, int specializationId) {
-        this.doctorId = doctorId;
-        this.doctorName = doctorName;
+    public Doctor(int id, String name, String phoneNumber, String address, Date dateOfBirth, int specializationId) {
+        this.id = id;
+        this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
@@ -36,8 +36,8 @@ public class Doctor {
     @Override
     public String toString() {
         return "Doctor{" +
-                "doctorId=" + doctorId +
-                ", doctorName='" + doctorName + '\'' +
+                "doctorId=" + id +
+                ", doctorName='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
@@ -49,11 +49,11 @@ public class Doctor {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return doctorId == doctor.doctorId && specializationId == doctor.specializationId && Objects.equals(doctorName, doctor.doctorName) && Objects.equals(phoneNumber, doctor.phoneNumber) && Objects.equals(address, doctor.address) && Objects.equals(dateOfBirth, doctor.dateOfBirth);
+        return id == doctor.id && specializationId == doctor.specializationId && Objects.equals(name, doctor.name) && Objects.equals(phoneNumber, doctor.phoneNumber) && Objects.equals(address, doctor.address) && Objects.equals(dateOfBirth, doctor.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(doctorId, doctorName, phoneNumber, address, dateOfBirth, specializationId);
+        return Objects.hash(id, name, phoneNumber, address, dateOfBirth, specializationId);
     }
 }

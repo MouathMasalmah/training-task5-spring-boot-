@@ -14,22 +14,22 @@ import java.util.Objects;
 public class Specialisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int specializationId;
-    private String specializationName;
+    private int id;
+    private String name;
 
     public Specialisation() {
     }
 
-    public Specialisation(int specializationId, String specializationName) {
-        this.specializationId = specializationId;
-        this.specializationName = specializationName;
+    public Specialisation(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Specialisation{" +
-                "specialization_id=" + specializationId +
-                ", specialization_name='" + specializationName + '\'' +
+                "specialization_id=" + id +
+                ", specialization_name='" + name + '\'' +
                 '}';
     }
 
@@ -37,11 +37,11 @@ public class Specialisation {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Specialisation that = (Specialisation) o;
-        return specializationId == that.specializationId && Objects.equals(specializationName, that.specializationName);
+        return id == that.id && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(specializationId, specializationName);
+        return Objects.hash(id, name);
     }
 }

@@ -33,7 +33,7 @@ public class PatientService {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
 
-        patient.setPatientName(patientDetails.getPatientName());
+        patient.setName(patientDetails.getName());
         patient.setPhoneNumber(patientDetails.getPhoneNumber());
         patient.setEmail(patientDetails.getEmail());
         patient.setAddress(patientDetails.getAddress());

@@ -29,7 +29,7 @@ public class SpecialisationService {
         Specialisation specialisation = specialisationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Specialisation not found"));
 
-        specialisation.setSpecializationName(specialisationDetails.getSpecializationName());
+        specialisation.setName(specialisationDetails.getName());
         return specialisationRepository.save(specialisation);
     }
 

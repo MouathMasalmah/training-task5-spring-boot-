@@ -33,7 +33,7 @@ public class DoctorService {
         Doctor doctor = doctorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Doctor not found"));
 
-        doctor.setDoctorName(doctorDetails.getDoctorName());
+        doctor.setName(doctorDetails.getName());
         doctor.setPhoneNumber(doctorDetails.getPhoneNumber());
         doctor.setAddress(doctorDetails.getAddress());
         doctor.setDateOfBirth(doctorDetails.getDateOfBirth());
