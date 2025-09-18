@@ -42,6 +42,7 @@ public class Doctor {
     private int specializationId;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Patient> patients;
 
     public Doctor() {}

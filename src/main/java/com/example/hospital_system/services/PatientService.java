@@ -1,5 +1,6 @@
 package com.example.hospital_system.services;
 
+import com.example.hospital_system.entities.Doctor;
 import com.example.hospital_system.entities.Patient;
 import com.example.hospital_system.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import java.util.Optional;
 public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private DoctorService doctorService;
 
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
@@ -45,5 +49,16 @@ public class PatientService {
 
     public void deletePatient(int id) {
         patientRepository.deleteById(id);
+    }
+    public Doctor updatePatientDoctor(int patientId, int newDoctorId) {
+        Patient patient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new RuntimeException("Patient with id " + patientId + " not found."));
+
+        Doctor newDoctor = doctorService.getDoctorById(newDoctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor with id " + newDoctorId + " not found."));
+
+        patient.setDoctor(newDoctor);
+        patientRepository.save(patient);
+        return newDoctor;
     }
 }

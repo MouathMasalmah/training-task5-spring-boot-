@@ -65,4 +65,13 @@ public class PatientController {
     public void deletePatient(@PathVariable int id) {
         patientService.deletePatient(id);
     }
+    @PutMapping("/{patientId}/doctor/{newDoctorId}")
+    public ResponseEntity<String> updatePatientDoctor(@PathVariable int patientId, @PathVariable int newDoctorId) {
+        try {
+            Doctor updatedDoctor = patientService.updatePatientDoctor(patientId, newDoctorId);
+            return ResponseEntity.ok("The doctor has been successfully changed. New doctor information: \n" + updatedDoctor.toString());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }
