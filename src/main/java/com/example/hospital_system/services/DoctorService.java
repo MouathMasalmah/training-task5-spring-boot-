@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class DoctorService {
+
     @Autowired
     private DoctorRepository doctorRepository;
 
@@ -23,8 +24,8 @@ public class DoctorService {
         return doctorRepository.findById(id);
     }
 
-    public List<Doctor> getDoctorsBySpecialisation(int specialization_id) {
-        return doctorRepository.findBySpecializationId(specialization_id);
+    public List<Doctor> getDoctorsBySpecialisation(int specializationId) {
+        return doctorRepository.findBySpecializationId(specializationId);
     }
 
     public Doctor createDoctor(Doctor doctor) {
@@ -34,15 +35,13 @@ public class DoctorService {
     public Doctor updateDoctor(int id, Doctor doctorDetails) {
         Doctor doctor = doctorRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST, "Doctor not found with id: " + id
+                        HttpStatus.NOT_FOUND, "Doctor not found with id: " + id
                 ));
-
         doctor.setName(doctorDetails.getName());
         doctor.setPhoneNumber(doctorDetails.getPhoneNumber());
         doctor.setAddress(doctorDetails.getAddress());
         doctor.setDateOfBirth(doctorDetails.getDateOfBirth());
         doctor.setSpecializationId(doctorDetails.getSpecializationId());
-
         return doctorRepository.save(doctor);
     }
 
