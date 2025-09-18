@@ -55,8 +55,33 @@ public class DoctorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateDoctor(@PathVariable int id, @Valid @RequestBody Doctor doctorDetails) {
-        Doctor updatedDoctor = doctorService.updateDoctor(id, doctorDetails);
+    public ResponseEntity<Object> updateDoctor(@PathVariable int id, @RequestBody Doctor doctorDetails) {
+        Optional<Doctor> existingDoctorOpt = doctorService.getDoctorById(id);
+        if (existingDoctorOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Doctor with id " + id + " not found");
+        }
+
+        Doctor existingDoctor = existingDoctorOpt.get();
+
+        // Update only non-null values
+        if (doctorDetails.getName() != null) {
+            existingDoctor.setName(doctorDetails.getName());
+        }
+        if (doctorDetails.getPhoneNumber() != null) {
+            existingDoctor.setPhoneNumber(doctorDetails.getPhoneNumber());
+        }
+        if (doctorDetails.getAddress() != null) {
+            existingDoctor.setAddress(doctorDetails.getAddress());
+        }
+        if (doctorDetails.getDateOfBirth() != null) {
+            existingDoctor.setDateOfBirth(doctorDetails.getDateOfBirth());
+        }
+        if (doctorDetails.getSpecializationId() != 0) { // assuming 0 is invalid
+            existingDoctor.setSpecializationId(doctorDetails.getSpecializationId());
+        }
+
+        Doctor updatedDoctor = doctorService.updateDoctor(id, existingDoctor);
         return ResponseEntity.ok(updatedDoctor);
     }
 
