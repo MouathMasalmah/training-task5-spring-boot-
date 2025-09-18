@@ -3,8 +3,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 public class Medicine {
     @Id
@@ -21,38 +26,6 @@ public class Medicine {
         this.medicationId = medicationId;
         this.medicationName = medicationName;
         this.remainingQuantity = remainingQuantity;
-        this.description = description;
-    }
-
-    public int getMedicationId() {
-        return medicationId;
-    }
-
-    public void setMedicationId(int medication_id) {
-        this.medicationId = medication_id;
-    }
-
-    public String getMedicationName() {
-        return medicationName;
-    }
-
-    public void setMedicationName(String medication_name) {
-        this.medicationName = medication_name;
-    }
-
-    public int getRemainingQuantity() {
-        return remainingQuantity;
-    }
-
-    public void setRemainingQuantity(int remaining_quantity) {
-        this.remainingQuantity = remaining_quantity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 

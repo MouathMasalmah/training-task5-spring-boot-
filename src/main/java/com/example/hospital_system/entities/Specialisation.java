@@ -3,9 +3,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 public class Specialisation {
     @Id
@@ -19,22 +23,6 @@ public class Specialisation {
     public Specialisation(int specializationId, String specializationName) {
         this.specializationId = specializationId;
         this.specializationName = specializationName;
-    }
-
-    public int getSpecializationId() {
-        return specializationId;
-    }
-
-    public void setSpecializationId(int specialization_id) {
-        this.specializationId = specialization_id;
-    }
-
-    public String getSpecializationName() {
-        return specializationName;
-    }
-
-    public void setSpecializationName(String specialization_name) {
-        this.specializationName = specialization_name;
     }
 
     @Override

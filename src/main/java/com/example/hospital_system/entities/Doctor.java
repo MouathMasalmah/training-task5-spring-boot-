@@ -1,9 +1,13 @@
 package com.example.hospital_system.entities;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 public class Doctor {
     @Id
@@ -27,54 +31,6 @@ public class Doctor {
         this.address = address;
         this.dateOfBirth = dateOfBirth;
         this.specializationId = specializationId;
-    }
-
-    public int getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public int getSpecializationId() {
-        return specializationId;
-    }
-
-    public void setSpecializationId(int specialization_id) {
-        this.specializationId = specialization_id;
     }
 
     @Override

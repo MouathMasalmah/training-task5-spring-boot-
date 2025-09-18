@@ -3,10 +3,14 @@ import com.example.hospital_system.PatientMedicationsId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity
 @IdClass(PatientMedicationsId.class)
 public class PatientMedications {
@@ -27,46 +31,6 @@ public class PatientMedications {
         this.dosage = dosage;
         this.startDate = startDate;
         this.endDate = endDate;
-    }
-
-    public int getMedicationId() {
-        return medicationId;
-    }
-
-    public void setMedicationId(int medication_id) {
-        this.medicationId = medication_id;
-    }
-
-    public int getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(int patient_id) {
-        this.patientId = patient_id;
-    }
-
-    public String getDosage() {
-        return dosage;
-    }
-
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date start_date) {
-        this.startDate = start_date;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date end_date) {
-        this.endDate = end_date;
     }
 
     @Override
