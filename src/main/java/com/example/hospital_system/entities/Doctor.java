@@ -1,7 +1,6 @@
 package com.example.hospital_system.entities;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,19 +15,30 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Doctor name is required")
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String name;
 
     @NotBlank(message = "Phone number is required")
+    @Pattern(
+            regexp = "^(059|056|057)\\d{7}$",
+            message = "Phone number must start with 059, 056, or 057 and be 10 digits long"
+    )
     private String phoneNumber;
 
+
+    @NotBlank
+    @Size(max = 100)
     private String address;
 
-    @NotNull(message = "Date of birth is required")
+    @NotNull
+    @Past
     private Date dateOfBirth;
 
+    @Min(1)
     @Column(name = "specialization_id")
     private int specializationId;
+
 
 
     public Doctor() {
