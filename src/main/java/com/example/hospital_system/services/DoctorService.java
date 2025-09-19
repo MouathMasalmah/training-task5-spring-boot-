@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DoctorService {
@@ -23,15 +22,27 @@ public class DoctorService {
     private PatientRepository patientRepository;
 
     public List<Doctor> getAllDoctors() {
-        return doctorRepository.findAll();
+        List<Doctor> doctors = doctorRepository.findAll();
+        if (doctors.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No doctors found");
+        }
+        return doctors;
     }
 
-    public Optional<Doctor> getDoctorById(int id) {
-        return doctorRepository.findById(id);
+    public Doctor getDoctorById(int id) {
+        return doctorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST, "Doctor not found with id: " + id
+                ));
     }
 
     public List<Doctor> getDoctorsBySpecialisation(int specializationId) {
-        return doctorRepository.findBySpecializationId(specializationId);
+        List<Doctor> doctors = doctorRepository.findBySpecializationId(specializationId);
+        if (doctors.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "No doctors found for specialization " + specializationId);
+        }
+        return doctors;
     }
 
     public Doctor createDoctor(Doctor doctor) {
@@ -41,25 +52,31 @@ public class DoctorService {
     public Doctor updateDoctor(int id, Doctor doctorDetails) {
         Doctor doctor = doctorRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Doctor not found with id: " + id
+                        HttpStatus.BAD_REQUEST, "Doctor not found with id: " + id
                 ));
-        doctor.setName(doctorDetails.getName());
-        doctor.setPhoneNumber(doctorDetails.getPhoneNumber());
-        doctor.setAddress(doctorDetails.getAddress());
-        doctor.setDateOfBirth(doctorDetails.getDateOfBirth());
-        doctor.setSpecializationId(doctorDetails.getSpecializationId());
+
+        if (doctorDetails.getName() != null) doctor.setName(doctorDetails.getName());
+        if (doctorDetails.getPhoneNumber() != null) doctor.setPhoneNumber(doctorDetails.getPhoneNumber());
+        if (doctorDetails.getAddress() != null) doctor.setAddress(doctorDetails.getAddress());
+        if (doctorDetails.getDateOfBirth() != null) doctor.setDateOfBirth(doctorDetails.getDateOfBirth());
+        if (doctorDetails.getSpecializationId() > 0) doctor.setSpecializationId(doctorDetails.getSpecializationId());
+
         return doctorRepository.save(doctor);
     }
 
     public void deleteDoctor(int id) {
         if (!doctorRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found with id: " + id);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Doctor not found with id: " + id);
         }
         doctorRepository.deleteById(id);
     }
+
     public DoctorWithPatientsDto getDoctorWithPatients(int id) {
         Doctor doctor = doctorRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found with id: " + id));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST, "Doctor not found with id: " + id
+                ));
 
         List<Patient> patients = patientRepository.findByDoctorId(id);
 
