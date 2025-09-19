@@ -4,24 +4,20 @@ import com.example.hospital_system.entities.Patient;
 import com.example.hospital_system.entities.Doctor;
 import com.example.hospital_system.dto.PatientCreationDto;
 import com.example.hospital_system.services.PatientService;
-import com.example.hospital_system.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import java.util.Optional;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/patients",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/patients", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PatientController {
-    @Autowired
-    private PatientService patientService;
 
     @Autowired
-    private DoctorService doctorService;
+    private PatientService patientService;
 
     @GetMapping(value = {"", "/"})
     public List<Patient> getAllPatients() {
@@ -29,7 +25,7 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Patient> getPatientById(@PathVariable int id) {
+    public Patient getPatientById(@PathVariable int id) {
         return patientService.getPatientById(id);
     }
 
@@ -40,19 +36,14 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<Patient> createPatient(@RequestBody PatientCreationDto patientDto) {
-        Optional<Doctor> doctorOpt = doctorService.getDoctorById(patientDto.getDoctorId());
-        if (doctorOpt.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(null);
-        }
         Patient patient = new Patient();
         patient.setName(patientDto.getName());
         patient.setPhoneNumber(patientDto.getPhoneNumber());
         patient.setEmail(patientDto.getEmail());
         patient.setAddress(patientDto.getAddress());
         patient.setDateOfBirth(patientDto.getDateOfBirth());
-        patient.setDoctor(doctorOpt.get());
-        Patient createdPatient = patientService.createPatient(patient);
+
+        Patient createdPatient = patientService.createPatient(patient, patientDto.getDoctorId());
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPatient);
     }
 
@@ -62,16 +53,14 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePatient(@PathVariable int id) {
+    public ResponseEntity<String> deletePatient(@PathVariable int id) {
         patientService.deletePatient(id);
+        return ResponseEntity.ok("Patient with id " + id + " deleted successfully");
     }
+
     @PutMapping("/{patientId}/doctor/{newDoctorId}")
     public ResponseEntity<String> updatePatientDoctor(@PathVariable int patientId, @PathVariable int newDoctorId) {
-        try {
-            Doctor updatedDoctor = patientService.updatePatientDoctor(patientId, newDoctorId);
-            return ResponseEntity.ok("The doctor has been successfully changed. New doctor information: \n" + updatedDoctor.toString());
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+        Doctor updatedDoctor = patientService.updatePatientDoctor(patientId, newDoctorId);
+        return ResponseEntity.ok("Doctor updated successfully. New doctor info: \n" + updatedDoctor.toString());
     }
 }
